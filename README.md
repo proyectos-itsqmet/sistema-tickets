@@ -1,76 +1,41 @@
-# React + TypeScript + Vite
+### Instals
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+1. npm install
 
-Currently, two official plugins are available:
+### Git flow
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Ramas principales:
 
-## React Compiler
+1. main: Rama de producción (Solo para código estable)
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+- develop: Rama de integración y desarrollo general
 
-## Expanding the ESLint configuration
+2. Trabajar siempre en ramas:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- feature/: Nuevas funcionalidades, características, por ejemplo: Nueva pantalla, nuevo campo en formulario
+- hotfix/: Correcciones urgentes en producción
+- fix/: Correcciones generales y bugs menores
+- release/: Preparaciones para un nuevo lanzamiento, por ejemplo: release/v1.2.0
 
-```js
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
+3. Usar mensajes de commit claros y consistentes, por ejemplo:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- feat: Agregar login con Google
+- fix: Corregir bug en formulario de registro
+- chore: Actualizar dependencias
+- docs: Añadir documentacion al README
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
-```
+### Branch - Develop
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+1. Cambiar a la rama de desarrollo git checkout develop
+2. Actualizar el proyecto con los últimos cambios del remoto git pull origin develop
+3. Crea la rama segun el flujo que vayas a realizar, por ejemplo git checkout -b feature/login
+4. Agregar los cambios al área de staging git add .
+5. Hacer commit git commit -m "feat: Creación de la pantalla login"
+6. Sube la rama al remoto git push -u origin feature/login
 
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
+---
 
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs["recommended-typescript"],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
-```
+### Configs
 
 1. npx create-vite@latest
 2. Select react
