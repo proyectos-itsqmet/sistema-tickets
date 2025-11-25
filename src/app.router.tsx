@@ -9,6 +9,8 @@ import ParkingLayout from "./parking/layouts/ParkingLayout";
 
 //? >>> Se carga de forma perezosa, solo cuando el usuario entra a una ruta de /auth
 const AuthLayout = lazy(() => import("./parking/layouts/ParkingLayout"));
+// const ParkingLayout = lazy(() => import("./parking/layouts/ParkingLayout"));
+// const AuthLayout = lazy(() => import("./auth/layouts/AuthLayout"));
 //? <<<
 
 export const appRouter = createBrowserRouter([
