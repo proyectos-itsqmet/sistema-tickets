@@ -12,7 +12,7 @@ import { Label } from "../ui/label";
 
 export const LoginForm = () => {
   return (
-    <Card className="w-full max-w-sm">
+    <Card className="w-full max-w-sm xl:max-w-md">
       <CardHeader className="text-center">
         <CardTitle className="text-xl">Iniciar sesión en tu cuenta</CardTitle>
         <CardDescription>
