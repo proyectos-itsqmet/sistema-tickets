@@ -55,3 +55,4 @@ NOTA: Actualizar branch develop => git pull origin develop
 11. npx shadcn@latest init
 
 12. npx json-server --watch .\data\db.json --port 3001 (Para incializar json server)
+13. npm install bcryptjs; npm install --save-dev @types/bcryptjs

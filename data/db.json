@@ -1,41 +1,43 @@
 {
-    "users": [
-        {
-            "id": 1,
-            "firstName": "Miguel",
-            "lastName": "Morales",
-            "email": "mmorales@correo.com",
-            "password": "123456",
-            "role": 1,
-            "status": 1,
-            "created_at": "2025-11-01T10:00:00Z",
-            "updated_at": null
-        },
-        {
-            "id": 2,
-            "firstName": "Pedro",
-            "lastName": "Zambrano",
-            "email": "pzambrano@correo.com",
-            "password": "123456",
-            "role": 2,
-            "status": 1,
-            "created_at": "2025-11-01T10:00:00Z",
-            "updated_at": null
-        }
-    ],
-    "roles": [
-        {
-            "id": 1,
-            "name": "Admin",
-            "created_at": "2025-11-01T10:00:00Z",
-            "updated_at": null,
-            "status": 1
-        },{
-            "id": 2,
-            "name": "Operator",
-            "created_at": "2025-11-01T10:00:00Z",
-            "updated_at": null,
-            "status": 1
-        }
-    ]
+  "users": [
+    {
+      "id": "2",
+      "firstName": "Pedro",
+      "lastName": "Zambrano",
+      "email": "pzambrano@correo.com",
+      "password": "$2b$10$6ZsT4Zgih8oIsazUHB3gIeO/HHJks8acaUbDV3o3h0xrYFfjnAu6K",
+      "role": 2,
+      "status": true,
+      "created_at": "2025-11-01T10:00:00Z",
+      "updated_at": null,
+      "loginAttempts": 0
+    },
+    {
+      "id": "1",
+      "firstName": "Miguel",
+      "lastName": "Morales",
+      "email": "mmorales@correo.com",
+      "password": "$2b$10$6ZsT4Zgih8oIsazUHB3gIeO/HHJks8acaUbDV3o3h0xrYFfjnAu6K",
+      "role": 1,
+      "status": true,
+      "created_at": "2025-11-26T03:27:31.522Z",
+      "loginAttempts": 0
+    }
+  ],
+  "roles": [
+    {
+      "id": "1",
+      "name": "Admin",
+      "created_at": "2025-11-01T10:00:00Z",
+      "updated_at": null,
+      "status": true
+    },
+    {
+      "id": "2",
+      "name": "Operator",
+      "created_at": "2025-11-01T10:00:00Z",
+      "updated_at": null,
+      "status": true
+    }
+  ]
 }
