@@ -21,6 +21,7 @@ import {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import {
   Collapsible,
@@ -60,6 +61,12 @@ const items = [
 ];
 
 export function AppSidebar() {
+  const { setOpenMobile } = useSidebar();
+
+  const handleLinkClick = () => {
+    setOpenMobile(false);
+  };
+
   return (
     <Sidebar>
       <SidebarHeader>
@@ -104,7 +111,10 @@ export function AppSidebar() {
                           {item.subitems.map((subitem) => (
                             <SidebarMenuSubItem key={subitem.title}>
                               <SidebarMenuSubButton asChild>
-                                <Link to={subitem.url}>
+                                <Link
+                                  to={subitem.url}
+                                  onClick={handleLinkClick}
+                                >
                                   <subitem.icon />
                                   <span>{subitem.title}</span>
                                 </Link>
@@ -118,7 +128,7 @@ export function AppSidebar() {
                 ) : (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton asChild>
-                      <Link to={item.url}>
+                      <Link to={item.url} onClick={handleLinkClick}>
                         <item.icon />
                         <span>{item.title}</span>
                       </Link>

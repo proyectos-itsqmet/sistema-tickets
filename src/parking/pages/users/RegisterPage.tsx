@@ -1,7 +1,12 @@
+import { RegisterForm } from "@/components/users/RegisterForm";
+
 export const RegisterPage = () => {
   return (
-    <div className="min-h-full flex flex-col items-center justify-center gap-4">
-      <span className="text-center text-lg font-semibold">Register</span>
+    <div className="min-h-full flex flex-col">
+      <h3 className="px-2">Registrar usuario</h3>
+      <div className="flex flex-1 flex-col h-full justify-center items-center px-4">
+        <RegisterForm />
+      </div>
     </div>
   );
 };
