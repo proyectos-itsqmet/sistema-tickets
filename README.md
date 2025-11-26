@@ -51,3 +51,5 @@ Ramas principales:
 9. Realizar configuraciones
 10. npm install -D @types/node [Install and configure shadcn/ui for Vite.](https://ui.shadcn.com/docs/installation/vite)
 11. npx shadcn@latest init
+
+12. npx json-server --watch .\data\db.json --port 3001 (Para incializar json server)
