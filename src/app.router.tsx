@@ -5,12 +5,12 @@ import { RatesPage } from "./parking/pages/rates/RatesPage";
 import { RegisterPage } from "./parking/pages/users/RegisterPage";
 import { HomePage } from "./parking/pages/home/HomePage";
 import { lazy } from "react";
-import ParkingLayout from "./parking/layouts/ParkingLayout";
+// import ParkingLayout from "./parking/layouts/ParkingLayout";
 
 //? >>> Se carga de forma perezosa, solo cuando el usuario entra a una ruta de /auth
-const AuthLayout = lazy(() => import("./parking/layouts/ParkingLayout"));
-// const ParkingLayout = lazy(() => import("./parking/layouts/ParkingLayout"));
-// const AuthLayout = lazy(() => import("./auth/layouts/AuthLayout"));
+// const AuthLayout = lazy(() => import("./parking/layouts/ParkingLayout"));
+const ParkingLayout = lazy(() => import("./parking/layouts/ParkingLayout"));
+const AuthLayout = lazy(() => import("./auth/layouts/AuthLayout"));
 //? <<<
 
 export const appRouter = createBrowserRouter([
