@@ -32,8 +32,10 @@ Ramas principales:
 4. Agregar los cambios al área de staging git add .
 5. Hacer commit git commit -m "feat: Creación de la pantalla login"
 6. Sube la rama al remoto git push -u origin feature/login
-7. comentario prueba
+
 ---
+
+NOTA: Actualizar branch develop => git pull origin develop
 
 ### Configs
 
