@@ -9,8 +9,8 @@ import { lazy } from "react";
 
 //? >>> Se carga de forma perezosa, solo cuando el usuario entra a una ruta de /auth
 // const AuthLayout = lazy(() => import("./parking/layouts/ParkingLayout"));
-const ParkingLayout = lazy(() => import("./parking/layouts/ParkingLayout"));
 const AuthLayout = lazy(() => import("./auth/layouts/AuthLayout"));
+const ParkingLayout = lazy(() => import("./parking/layouts/ParkingLayout"));
 //? <<<
 
 export const appRouter = createBrowserRouter([
@@ -56,7 +56,8 @@ export const appRouter = createBrowserRouter([
     ],
   },
 
-  //? >>> Si la ruta no esta definida redirecciona al Home
+  //? >>> Si la ruta no esta definida redirecciona al Auth
+  //TODO: Cambiar a /parking cuando este el sistema de autenticacion
   {
     path: "*",
     element: <Navigate to="/" />,
