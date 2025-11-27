@@ -39,5 +39,81 @@
       "updated_at": null,
       "status": true
     }
+  ],
+  "tickets": [
+    {
+      "id": 1,
+      "placa_vehiculo": "ABC123",
+      "fecha_hora_ingreso": "2025-11-26T08:00:00Z",
+      "fecha_hora_salida": null,
+      "tiempo_permanencia": null,
+      "id_operador_ingreso": 2,
+      "id_operador_salida": null,
+      "monto": null,
+      "tarifa": 0.5
+    },
+    {
+      "id": 2,
+      "placa_vehiculo": "DEF456",
+      "fecha_hora_ingreso": "2025-11-26T09:00:00Z",
+      "fecha_hora_salida": null,
+      "tiempo_permanencia": null,
+      "id_operador_ingreso": 2,
+      "id_operador_salida": null,
+      "monto": null,
+      "tarifa": 0.5
+    },
+    {
+      "id": 3,
+      "placa_vehiculo": "GHI789",
+      "fecha_hora_ingreso": "2025-11-26T10:00:00Z",
+      "fecha_hora_salida": null,
+      "tiempo_permanencia": null,
+      "id_operador_ingreso": 2,
+      "id_operador_salida": null,
+      "monto": null,
+      "tarifa": 0.5
+    },
+    {
+      "id": 4,
+      "placa_vehiculo": "JKL012",
+      "fecha_hora_ingreso": "2025-11-26T11:00:00Z",
+      "fecha_hora_salida": "2025-11-26T12:00:00Z",
+      "tiempo_permanencia": "01:00:00",
+      "id_operador_ingreso": 2,
+      "id_operador_salida": 2,
+      "monto": 0.5,
+      "tarifa": 0.5
+    }
+  ],
+  "tarifas": [
+    {
+      "id": 1,
+      "tarifa_por_hora": 0.5,
+      "status": true,
+      "created_at": "2025-11-01T10:00:00Z",
+      "id_usuario_creacion": 1
+    }
+  ],
+  "facturas": [
+    {
+      "id": 1,
+      "id_ticket": 1,
+      "monto_total": 2.0,
+      "fecha_emision": "2025-11-26T10:00:00Z",
+      "id_metodo_pago": 1,
+      "id_usuario_emision": 2
+    }
+  ],
+  "parqueaderos": [
+    {
+      "id": 1,
+      "nombre": "Parqueadero Central",
+      "direccion": "Calle 123 #45-67",
+      "capacidad_total": 100,
+      "capacidad_disponible": 75,
+      "created_at": "2025-11-01T10:00:00Z",
+      "updated_at": null
+    }
   ]
 }
