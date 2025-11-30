@@ -20,19 +20,33 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { columns } from "./ParkingDatatableColumns";
-import { useState } from "react";
+import { createColumns } from "./ParkingDatatableColumns";
+import { useMemo, useState } from "react";
 import type { TicketsInterface } from "@/interfaces/tickets.interface";
 
 interface ParkingDatatableProps {
   data: TicketsInterface[];
+  onConfirmSalida: (
+    ticket: TicketsInterface,
+    metodoPago: string
+  ) => Promise<void>;
+  loading: boolean;
 }
 
-export function ParkingDatatable({ data }: ParkingDatatableProps) {
+export function ParkingDatatable({
+  data,
+  onConfirmSalida,
+  loading,
+}: ParkingDatatableProps) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
+
+  const columns = useMemo(
+    () => createColumns(onConfirmSalida, loading),
+    [onConfirmSalida, loading]
+  );
 
   const table = useReactTable({
     data,
@@ -116,6 +130,7 @@ export function ParkingDatatable({ data }: ParkingDatatableProps) {
             size="sm"
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
+            className="cursor-pointer"
           >
             Anterior
           </Button>
@@ -124,6 +139,7 @@ export function ParkingDatatable({ data }: ParkingDatatableProps) {
             size="sm"
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
+            className="cursor-pointer"
           >
             Siguiente
           </Button>
