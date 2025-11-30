@@ -1,5 +1,9 @@
 import { ParkingDatatable } from "@/components/parking/ParkingDatatable";
-import { useTickets } from "@/hooks/use.tickets";
+import {
+  calculateElapsedTime,
+  calculateAmount,
+} from "@/components/parking/ParkingDatatableColumns";
+import { useTickets } from "@/hooks/useTickets";
 import type { TicketsInterface } from "@/interfaces/tickets.interface";
 import { Car, CircleParking, LogOut } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -15,36 +19,100 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
 
 export const HomePage = () => {
-  const { getTicketsByFechaSalida, getTickets } = useTickets();
+  const {
+    getTicketsByFechaSalida,
+    getTickets,
+    createTicket,
+    updatedTicket,
+    loading,
+  } = useTickets();
   const [data, setData] = useState<TicketsInterface[]>([]);
   const [vehiculosEstacionados, setVehiculosEstacionados] = useState(0);
   const [ingresosHoy, setIngresosHoy] = useState(0);
   const [salidasHoy, setSalidasHoy] = useState(0);
+  const [placa, setPlaca] = useState("");
+  const [placaError, setPlacaError] = useState("");
+  const [openModal, setOpenModal] = useState(false);
 
-  useEffect(() => {
-    const isToday = (dateString: string | null): boolean => {
-      if (!dateString) return false;
+  //! Validar formato de placa: 'ABC-1234'
+  const validarPlaca = (valor: string): boolean => {
+    const regex = /^[A-Za-z]{3}-\d{4}$/;
+    return regex.test(valor);
+  };
 
-      const date = new Date(dateString);
-      const today = new Date();
+  const handlePlacaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let valor = e.target.value.toUpperCase();
 
-      return (
-        date.getDate() === today.getDate() &&
-        date.getMonth() === today.getMonth() &&
-        date.getFullYear() === today.getFullYear()
-      );
-    };
+    if (valor.length === 3 && !valor.includes("-")) {
+      valor = valor + "-";
+    }
 
-    //! Obtener tickets al cargar el componente
-    const fetchTickets = async () => {
-      const ticketsData = await getTicketsByFechaSalida();
-      setData(ticketsData);
-    };
+    //!Limitar 8 caracteres
+    if (valor.length <= 8) {
+      setPlaca(valor);
+
+      //! Validar solo si tiene contenido
+      if (valor.length > 0 && valor.length < 8) {
+        setPlacaError("Formato: ABC-1234");
+      } else if (valor.length === 8 && !validarPlaca(valor)) {
+        setPlacaError("Formato inválido. Use: ABC-1234");
+      } else {
+        setPlacaError("");
+      }
+    }
+  };
+
+  const isToday = (dateString: string | null): boolean => {
+    if (!dateString) return false;
+
+    const date = new Date(dateString);
+    const today = new Date();
+
+    return (
+      date.getDate() === today.getDate() &&
+      date.getMonth() === today.getMonth() &&
+      date.getFullYear() === today.getFullYear()
+    );
+  };
+
+  const fetchData = async () => {
+    //! Obtener tickets sin salida
+    const ticketsData = await getTicketsByFechaSalida();
+    setData(ticketsData);
 
     //! Obtener estadísticas
-    const fetchEstadisticas = async () => {
+    const allTickets = await getTickets();
+
+    //! Vehículos actualmente estacionados (sin fecha de salida)
+    const estacionados = allTickets.filter(
+      (ticket) => ticket.fecha_hora_salida === null
+    ).length;
+    setVehiculosEstacionados(estacionados);
+
+    //! Ingresados hoy (que ingresaron hoy y aún no han salido)
+    const ingresos = allTickets.filter(
+      (ticket) =>
+        isToday(ticket.fecha_hora_ingreso) && ticket.fecha_hora_salida === null
+    ).length;
+    setIngresosHoy(ingresos);
+
+    //! Salidas hoy (que salieron en el día de hoy)
+    const salidas = allTickets.filter((ticket) =>
+      isToday(ticket.fecha_hora_salida)
+    ).length;
+    setSalidasHoy(salidas);
+  };
+
+  useEffect(() => {
+    const loadData = async () => {
+      //! Obtener tickets sin salida
+      const ticketsData = await getTicketsByFechaSalida();
+      setData(ticketsData);
+
+      //! Obtener estadísticas
       const allTickets = await getTickets();
 
       //! Vehículos actualmente estacionados (sin fecha de salida)
@@ -68,9 +136,74 @@ export const HomePage = () => {
       setSalidasHoy(salidas);
     };
 
-    fetchTickets();
-    fetchEstadisticas();
+    loadData();
   }, [getTicketsByFechaSalida, getTickets]);
+
+  const handleRegistrarIngreso = async () => {
+    if (!placa.trim()) {
+      toast.error("Error", {
+        description: "Debe ingresar la placa del vehículo",
+      });
+      return;
+    }
+
+    if (!validarPlaca(placa)) {
+      toast.error("Error", {
+        description: "Formato de placa inválido. Use: ABC-1234",
+      });
+      return;
+    }
+
+    const result = await createTicket({
+      placa_vehiculo: placa.toUpperCase(),
+      id_operador_ingreso: 1,
+      tarifa: 1,
+    });
+
+    if (result) {
+      toast.success("Ingreso registrado", {
+        description: `Vehículo ${placa.toUpperCase()} registrado exitosamente`,
+      });
+      setPlaca("");
+      setPlacaError("");
+      setOpenModal(false);
+      await fetchData();
+    } else {
+      toast.error("Error", {
+        description: "No se pudo registrar el ingreso del vehículo",
+      });
+    }
+  };
+
+  const handleConfirmSalida = async (
+    ticket: TicketsInterface,
+    metodoPago: string
+  ) => {
+    const tiempoPermanencia = calculateElapsedTime(ticket.fecha_hora_ingreso);
+    const tarifa = ticket.tarifa || 0.5;
+    const monto = calculateAmount(ticket.fecha_hora_ingreso, tarifa);
+
+    const result = await updatedTicket({
+      ticket,
+      id_operador_salida: 1, // TODO: Obtener del usuario autenticado
+      tiempo_permanencia: tiempoPermanencia,
+      monto,
+      metodo_pago: metodoPago,
+    });
+
+    if (result) {
+      toast.success("Salida registrada", {
+        description: `Vehículo ${ticket.placa_vehiculo.toUpperCase()} - Total: $${monto.toFixed(
+          2
+        )}`,
+      });
+      await fetchData();
+    } else {
+      toast.error("Error", {
+        description: "No se pudo registrar la salida del vehículo",
+      });
+    }
+  };
 
   return (
     <div className="flex flex-col gap-6">
@@ -82,7 +215,16 @@ export const HomePage = () => {
           </span>
         </div>
 
-        <AlertDialog>
+        <AlertDialog
+          open={openModal}
+          onOpenChange={(open) => {
+            setOpenModal(open);
+            if (!open) {
+              setPlaca("");
+              setPlacaError("");
+            }
+          }}
+        >
           <AlertDialogTrigger className="bg-emerald-500 hover:bg-emerald-400 gap-4 cursor-pointer text-white px-4 py-2 rounded-md flex items-center">
             <LogOut />
             Registrar ingreso
@@ -103,7 +245,17 @@ export const HomePage = () => {
                       <span className="font-semibold text-black">
                         Placa del vehículo
                       </span>
-                      <Input />
+                      <Input
+                        value={placa}
+                        onChange={handlePlacaChange}
+                        placeholder="Ej: ABC-1234"
+                        className={placaError ? "border-red-500" : ""}
+                      />
+                      {placaError && (
+                        <span className="text-red-500 text-sm">
+                          {placaError}
+                        </span>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -113,8 +265,12 @@ export const HomePage = () => {
               <AlertDialogCancel className="cursor-pointer">
                 Cancelar
               </AlertDialogCancel>
-              <AlertDialogAction className="bg-emerald-500 hover:bg-emerald-400 cursor-pointer">
-                Registrar
+              <AlertDialogAction
+                className="bg-emerald-500 hover:bg-emerald-400 cursor-pointer"
+                onClick={handleRegistrarIngreso}
+                disabled={loading}
+              >
+                {loading ? "Registrando..." : "Registrar"}
               </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
@@ -155,7 +311,11 @@ export const HomePage = () => {
           </div>
         </div>
         <div className="flex flex-col flex-1 w-full h-full rounded-2xl border bg-white p-4">
-          <ParkingDatatable data={data} />
+          <ParkingDatatable
+            data={data}
+            onConfirmSalida={handleConfirmSalida}
+            loading={loading}
+          />
         </div>
       </div>
     </div>
