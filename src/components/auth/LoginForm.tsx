@@ -11,15 +11,21 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { useState } from "react";
 import { useUser } from "@/hooks/useUser";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
+import { useAuth } from "@/hooks/useAuth";
 
 export const LoginForm = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { login: authLogin } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
   const { login, loading } = useUser();
+
+  //! Obtener la ruta de origen para redirigir después del login
+  const from = location.state?.from?.pathname || "/";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,7 +34,11 @@ export const LoginForm = () => {
     const result = await login(email, password);
 
     if (result.success && result.user) {
-      navigate("/parking");
+      //! Guardar usuario en el contexto de autenticación
+      authLogin(result.user);
+
+      //! Redirigir a la ruta de origen o al home
+      navigate(from, { replace: true });
       setEmail("");
       setPassword("");
     } else {

@@ -119,6 +119,32 @@
   }
 }
 
+/* Sonner Toast Customization */
+
+[data-sonner-toast][data-type="success"] {
+  --normal-bg: white !important;
+  --normal-border: #10b981 !important;
+  --normal-text: #10b981 !important;
+}
+
+[data-sonner-toast][data-type="error"] {
+  --normal-bg: white !important;
+  --normal-border: #ef4444 !important;
+  --normal-text: #ef4444 !important;
+}
+
+[data-sonner-toast][data-type="warning"] {
+  --normal-bg: white !important;
+  --normal-border: #f59e0b !important;
+  --normal-text: #f59e0b !important;
+}
+
+[data-sonner-toast][data-type="info"] {
+  --normal-bg: white !important;
+  --normal-border: #3b82f6 !important;
+  --normal-text: #3b82f6 !important;
+}
+
 @theme {
   --font-montserrat: "Montserrat Alternates", sans-serif;
 }
