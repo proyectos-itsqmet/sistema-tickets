@@ -12,6 +12,31 @@ export const useTickets = () => {
   const PARQUEADEROS_URL = `${env.API_URL}/parqueaderos`;
   const FACTURAS_URL = `${env.API_URL}/facturas`;
 
+  //? >>> Obtener espacios disponibles del parqueadero
+  const getEspaciosDisponibles = useCallback(async (): Promise<number> => {
+    try {
+      const [parqueaderosRes, ticketsRes] = await Promise.all([
+        fetch(`${PARQUEADEROS_URL}/1`),
+        fetch(API_URL),
+      ]);
+
+      if (!parqueaderosRes.ok || !ticketsRes.ok) return 0;
+
+      const parqueadero = await parqueaderosRes.json();
+      const tickets: TicketsInterface[] = await ticketsRes.json();
+
+      const ticketsActivos = tickets.filter(
+        (ticket) => ticket.fecha_hora_salida === null
+      );
+
+      return parqueadero.capacidad_total - ticketsActivos.length;
+    } catch (err) {
+      console.error("Error al obtener espacios disponibles:", err);
+      return 0;
+    }
+  }, [PARQUEADEROS_URL, API_URL]);
+  //? <<<
+
   //? >>> Actualizar espacios ocupados del parqueadero
   const updateParqueaderoCapacity = useCallback(
     async (parqueaderoId: number, increment: boolean): Promise<boolean> => {
@@ -156,6 +181,54 @@ export const useTickets = () => {
   }, [API_URL]);
   //? <<<
 
+  //? >>> Obtener tickets del día actual
+  const getTicketsToday = useCallback(async (): Promise<TicketsInterface[]> => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetch(API_URL);
+
+      if (!response.ok) {
+        throw new Error("Error al obtener los tickets");
+      }
+
+      const allTickets: TicketsInterface[] = await response.json();
+
+      // Filtrar tickets del día actual
+      const today = new Date();
+      const todayStart = new Date(
+        today.getFullYear(),
+        today.getMonth(),
+        today.getDate()
+      );
+
+      const ticketsToday = allTickets.filter((ticket) => {
+        const fechaIngreso = new Date(ticket.fecha_hora_ingreso);
+        const fechaSalida = ticket.fecha_hora_salida
+          ? new Date(ticket.fecha_hora_salida)
+          : null;
+
+        // Incluir si ingresó hoy O si salió hoy
+        return (
+          fechaIngreso >= todayStart ||
+          (fechaSalida && fechaSalida >= todayStart)
+        );
+      });
+
+      return ticketsToday;
+    } catch (err) {
+      const errorMessage =
+        err instanceof Error ? err.message : "Error desconocido";
+      setError(errorMessage);
+      console.error(err);
+      return [];
+    } finally {
+      setLoading(false);
+    }
+  }, [API_URL]);
+  //? <<<
+
   //? >>> Registrar nuevo ticket
   const createTicket = useCallback(
     async ({
@@ -166,7 +239,10 @@ export const useTickets = () => {
       placa_vehiculo: string;
       id_operador_ingreso: number;
       tarifa: number;
-    }): Promise<TicketsInterface | null> => {
+    }): Promise<{
+      ticket: TicketsInterface;
+      espaciosDisponibles: number;
+    } | null> => {
       setLoading(true);
       setError(null);
 
@@ -220,7 +296,10 @@ export const useTickets = () => {
         //! Incrementar espacios ocupados del parqueadero
         await updateParqueaderoCapacity(1, true);
 
-        return data;
+        //! Obtener espacios disponibles actualizados
+        const espaciosDisponibles = await getEspaciosDisponibles();
+
+        return { ticket: data, espaciosDisponibles };
       } catch (err) {
         const errorMessage =
           err instanceof Error ? err.message : "Error desconocido";
@@ -231,7 +310,7 @@ export const useTickets = () => {
         setLoading(false);
       }
     },
-    [API_URL, updateParqueaderoCapacity]
+    [API_URL, updateParqueaderoCapacity, getEspaciosDisponibles]
   );
   //? <<<
 
@@ -320,7 +399,9 @@ export const useTickets = () => {
     error,
     getTickets,
     getTicketsByFechaSalida,
+    getTicketsToday,
     createTicket,
     updatedTicket,
+    getEspaciosDisponibles,
   };
 };

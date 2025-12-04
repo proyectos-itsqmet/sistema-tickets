@@ -272,7 +272,7 @@ export const ReportsPage = () => {
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="grid w-full grid-cols-4">
             <TabsTrigger value="ingresos" className="cursor-pointer">
-              Ingresos
+              Ingresos de vehiculos
             </TabsTrigger>
             <TabsTrigger value="ocupacion" className="cursor-pointer">
               Ocupación
@@ -288,7 +288,7 @@ export const ReportsPage = () => {
           <TabsContent value="ingresos">
             <Card>
               <CardHeader>
-                <CardTitle>Reporte de Ingresos</CardTitle>
+                <CardTitle>Reporte de Ingresos de vehiculos</CardTitle>
               </CardHeader>
               <CardContent>
                 {incomeData.length > 0 ? (

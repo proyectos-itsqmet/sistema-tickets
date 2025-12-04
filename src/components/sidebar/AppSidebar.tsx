@@ -9,6 +9,7 @@ import {
   LogOut,
   ChevronsUpDown,
   ChartLine,
+  Settings,
 } from "lucide-react";
 
 import {
@@ -40,9 +41,21 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { Link, useNavigate } from "react-router";
 import { useAuth } from "@/hooks/useAuth";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { useState } from "react";
+import { ChangePasswordModal } from "./ChangePasswordModal";
 
 const items = [
   {
@@ -83,6 +96,8 @@ export function AppSidebar() {
   const { setOpenMobile } = useSidebar();
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [showPasswordModal, setShowPasswordModal] = useState(false);
 
   const handleLinkClick = () => {
     setOpenMobile(false);
@@ -234,7 +249,14 @@ export function AppSidebar() {
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
-                  onClick={handleLogout}
+                  onClick={() => setShowPasswordModal(true)}
+                  className="cursor-pointer"
+                >
+                  <Settings className="mr-2 h-4 w-4" />
+                  Configuración
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() => setShowLogoutModal(true)}
                   className="cursor-pointer"
                 >
                   <LogOut className="mr-2 h-4 w-4" />
@@ -242,6 +264,42 @@ export function AppSidebar() {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
+
+            {/* Modal de confirmación de cierre de sesión */}
+            <AlertDialog
+              open={showLogoutModal}
+              onOpenChange={setShowLogoutModal}
+            >
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle className="flex items-center gap-2">
+                    <LogOut className="h-5 w-5 text-red-500" />
+                    Cerrar sesión
+                  </AlertDialogTitle>
+                  <AlertDialogDescription>
+                    ¿Estás seguro que deseas cerrar sesión? Tendrás que volver a
+                    iniciar sesión para acceder al sistema.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel className="cursor-pointer">
+                    Cancelar
+                  </AlertDialogCancel>
+                  <AlertDialogAction
+                    onClick={handleLogout}
+                    className="bg-red-500 hover:bg-red-400 cursor-pointer"
+                  >
+                    Cerrar sesión
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+
+            {/* Modal de cambio de contraseña */}
+            <ChangePasswordModal
+              open={showPasswordModal}
+              onOpenChange={setShowPasswordModal}
+            />
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>

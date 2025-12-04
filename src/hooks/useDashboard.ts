@@ -105,9 +105,12 @@ export const useDashboard = () => {
           return Number((((hoy - ayer) / ayer) * 100).toFixed(1));
         };
 
-        //! Espacios
+        //! Espacios - calcular desde tickets activos (sin fecha_hora_salida)
+        const ticketsActivos = tickets.filter(
+          (ticket) => ticket.fecha_hora_salida === null
+        );
         const capacidadTotal = parqueadero?.capacidad_total || 100;
-        const espaciosOcupados = parqueadero?.espacios_ocupados || 0;
+        const espaciosOcupados = ticketsActivos.length;
         const espaciosDisponibles = capacidadTotal - espaciosOcupados;
         const porcentajeOcupacion = Number(
           ((espaciosOcupados / capacidadTotal) * 100).toFixed(1)

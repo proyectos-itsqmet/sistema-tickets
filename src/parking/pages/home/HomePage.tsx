@@ -22,13 +22,8 @@ import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 
 export const HomePage = () => {
-  const {
-    getTicketsByFechaSalida,
-    getTickets,
-    createTicket,
-    updatedTicket,
-    loading,
-  } = useTickets();
+  const { getTicketsToday, getTickets, createTicket, updatedTicket, loading } =
+    useTickets();
   const [data, setData] = useState<TicketsInterface[]>([]);
   const [vehiculosEstacionados, setVehiculosEstacionados] = useState(0);
   const [ingresosHoy, setIngresosHoy] = useState(0);
@@ -79,8 +74,8 @@ export const HomePage = () => {
   };
 
   const fetchData = async () => {
-    //! Obtener tickets sin salida
-    const ticketsData = await getTicketsByFechaSalida();
+    //! Obtener tickets del día
+    const ticketsData = await getTicketsToday();
     setData(ticketsData);
 
     //! Obtener estadísticas
@@ -108,8 +103,8 @@ export const HomePage = () => {
 
   useEffect(() => {
     const loadData = async () => {
-      //! Obtener tickets sin salida
-      const ticketsData = await getTicketsByFechaSalida();
+      //! Obtener tickets del día
+      const ticketsData = await getTicketsToday();
       setData(ticketsData);
 
       //! Obtener estadísticas
@@ -137,7 +132,7 @@ export const HomePage = () => {
     };
 
     loadData();
-  }, [getTicketsByFechaSalida, getTickets]);
+  }, [getTicketsToday, getTickets]);
 
   const handleRegistrarIngreso = async () => {
     if (!placa.trim()) {
@@ -162,7 +157,13 @@ export const HomePage = () => {
 
     if (result) {
       toast.success("Ingreso registrado", {
-        description: `Vehículo ${placa.toUpperCase()} registrado exitosamente`,
+        description: (
+          <span className="text-gray-700">
+            Vehículo <strong>{placa.toUpperCase()}</strong> registrado
+            exitosamente, quedan <strong>{result.espaciosDisponibles}</strong>{" "}
+            espacios disponibles
+          </span>
+        ),
       });
       setPlaca("");
       setPlacaError("");

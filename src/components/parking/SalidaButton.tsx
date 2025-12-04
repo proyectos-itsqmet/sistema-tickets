@@ -48,6 +48,7 @@ export const SalidaButton = ({
   const placa = ticket.placa_vehiculo;
   const ingreso = ticket.fecha_hora_ingreso;
   const tarifa = ticket.tarifa || 0.5;
+  const isFinalizado = ticket.fecha_hora_salida !== null;
 
   const horasEstacionado = calculateHours(ingreso);
   const montoTotal = calculateAmount(ingreso, tarifa);
@@ -55,13 +56,16 @@ export const SalidaButton = ({
   const handleConfirm = async () => {
     await onConfirmSalida(ticket, metodoPago);
     setOpen(false);
-    setMetodoPago("Efectivo"); // Reset al cerrar
+    setMetodoPago("Efectivo");
   };
 
   return (
     <div className="flex justify-end">
       <AlertDialog open={open} onOpenChange={setOpen}>
-        <AlertDialogTrigger className="bg-red-500 hover:bg-red-400 gap-4 cursor-pointer text-white px-4 py-2 rounded-md flex items-center">
+        <AlertDialogTrigger
+          className="bg-red-500 hover:bg-red-400 gap-4 cursor-pointer text-white px-4 py-2 rounded-md flex items-center disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-red-500"
+          disabled={isFinalizado}
+        >
           <LogOut className="h-4 w-4" /> Salida
         </AlertDialogTrigger>
         <AlertDialogContent>

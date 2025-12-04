@@ -35,8 +35,23 @@ export const IncomeChart = ({ data, tipo }: IncomeChartProps) => {
       ];
       return `${months[parseInt(month) - 1]} ${year}`;
     }
-    const date = new Date(dateStr + "T00:00:00");
-    return date.toLocaleDateString("es-EC", { day: "2-digit", month: "short" });
+    // Zona horaria
+    const [year, month, day] = dateStr.split("-");
+    const months = [
+      "ene",
+      "feb",
+      "mar",
+      "abr",
+      "may",
+      "jun",
+      "jul",
+      "ago",
+      "sep",
+      "oct",
+      "nov",
+      "dic",
+    ];
+    return `${day} ${months[parseInt(month) - 1]}`;
   };
 
   const formattedData = data.map((item) => ({
@@ -68,7 +83,7 @@ export const IncomeChart = ({ data, tipo }: IncomeChartProps) => {
           <YAxis yAxisId="right" orientation="right" tick={{ fontSize: 12 }} />
           <Tooltip
             formatter={(value: number, name: string) => {
-              if (name === "ingresos")
+              if (name === "Ingresos ($)")
                 return [`$${value.toFixed(2)}`, "Ingresos"];
               return [value, "Tickets"];
             }}
