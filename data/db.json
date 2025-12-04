@@ -43,47 +43,275 @@
   "tickets": [
     {
       "id": "1",
-      "placa_vehiculo": "ABC123",
-      "fecha_hora_ingreso": "2025-11-26T08:00:00Z",
-      "fecha_hora_salida": "2025-11-29T00:12:18.090Z",
-      "tiempo_permanencia": "2d 11h 12m",
+      "placa_vehiculo": "ABC-1234",
+      "fecha_hora_ingreso": "2025-11-01T08:00:00",
+      "fecha_hora_salida": "2025-11-01T12:30:00",
+      "tiempo_permanencia": "4h 30m",
       "id_operador_ingreso": 2,
       "id_operador_salida": 1,
-      "monto": 30,
-      "tarifa": 0.5,
+      "monto": 4.5,
+      "tarifa": 1,
       "metodo_pago": "Efectivo"
     },
     {
       "id": "2",
-      "placa_vehiculo": "DEF456",
-      "fecha_hora_ingreso": "2025-11-26T09:00:00Z",
-      "fecha_hora_salida": "2025-11-28T21:05:20.522",
-      "tiempo_permanencia": "2d 12h 5m",
-      "id_operador_ingreso": 2,
-      "id_operador_salida": 1,
-      "monto": 30.5,
-      "tarifa": 0.5,
+      "placa_vehiculo": "DEF-5678",
+      "fecha_hora_ingreso": "2025-11-02T09:15:00",
+      "fecha_hora_salida": "2025-11-02T14:45:00",
+      "tiempo_permanencia": "5h 30m",
+      "id_operador_ingreso": 1,
+      "id_operador_salida": 2,
+      "monto": 5.5,
+      "tarifa": 1,
       "metodo_pago": "Tarjeta de débito"
     },
     {
       "id": "3",
-      "placa_vehiculo": "GHI789",
-      "fecha_hora_ingreso": "2025-11-26T10:00:00Z",
-      "fecha_hora_salida": "2025-11-28T21:04:04.620",
-      "tiempo_permanencia": "2d 11h 4m",
+      "placa_vehiculo": "GHI-9012",
+      "fecha_hora_ingreso": "2025-11-03T07:30:00",
+      "fecha_hora_salida": "2025-11-03T18:00:00",
+      "tiempo_permanencia": "10h 30m",
       "id_operador_ingreso": 2,
       "id_operador_salida": 1,
-      "monto": 30,
-      "tarifa": 0.5,
+      "monto": 10.5,
+      "tarifa": 1,
       "metodo_pago": "Tarjeta de crédito"
     },
     {
-      "id": 4,
+      "id": "4",
+      "placa_vehiculo": "JKL-3456",
+      "fecha_hora_ingreso": "2025-11-05T10:00:00",
+      "fecha_hora_salida": "2025-11-05T13:00:00",
+      "tiempo_permanencia": "3h",
+      "id_operador_ingreso": 1,
+      "id_operador_salida": 1,
+      "monto": 3,
+      "tarifa": 1,
+      "metodo_pago": "Efectivo"
+    },
+    {
+      "id": "5",
+      "placa_vehiculo": "MNO-7890",
+      "fecha_hora_ingreso": "2025-11-07T08:45:00",
+      "fecha_hora_salida": "2025-11-07T17:30:00",
+      "tiempo_permanencia": "8h 45m",
+      "id_operador_ingreso": 2,
+      "id_operador_salida": 2,
+      "monto": 8.75,
+      "tarifa": 1,
+      "metodo_pago": "Tarjeta de débito"
+    },
+    {
+      "id": "6",
+      "placa_vehiculo": "PQR-1234",
+      "fecha_hora_ingreso": "2025-11-10T06:00:00",
+      "fecha_hora_salida": "2025-11-10T20:00:00",
+      "tiempo_permanencia": "14h",
+      "id_operador_ingreso": 1,
+      "id_operador_salida": 2,
+      "monto": 14,
+      "tarifa": 1,
+      "metodo_pago": "Efectivo"
+    },
+    {
+      "id": "7",
+      "placa_vehiculo": "STU-5678",
+      "fecha_hora_ingreso": "2025-11-12T11:00:00",
+      "fecha_hora_salida": "2025-11-12T15:30:00",
+      "tiempo_permanencia": "4h 30m",
+      "id_operador_ingreso": 2,
+      "id_operador_salida": 1,
+      "monto": 4.5,
+      "tarifa": 1,
+      "metodo_pago": "Tarjeta de crédito"
+    },
+    {
+      "id": "8",
+      "placa_vehiculo": "VWX-9012",
+      "fecha_hora_ingreso": "2025-11-15T09:00:00",
+      "fecha_hora_salida": "2025-11-15T12:00:00",
+      "tiempo_permanencia": "3h",
+      "id_operador_ingreso": 1,
+      "id_operador_salida": 1,
+      "monto": 3,
+      "tarifa": 1,
+      "metodo_pago": "Efectivo"
+    },
+    {
+      "id": "9",
+      "placa_vehiculo": "YZA-3456",
+      "fecha_hora_ingreso": "2025-11-18T14:00:00",
+      "fecha_hora_salida": "2025-11-18T19:00:00",
+      "tiempo_permanencia": "5h",
+      "id_operador_ingreso": 2,
+      "id_operador_salida": 2,
+      "monto": 5,
+      "tarifa": 1,
+      "metodo_pago": "Tarjeta de débito"
+    },
+    {
+      "id": "10",
+      "placa_vehiculo": "BCD-7890",
+      "fecha_hora_ingreso": "2025-11-20T07:00:00",
+      "fecha_hora_salida": "2025-11-20T16:00:00",
+      "tiempo_permanencia": "9h",
+      "id_operador_ingreso": 1,
+      "id_operador_salida": 2,
+      "monto": 9,
+      "tarifa": 1,
+      "metodo_pago": "Efectivo"
+    },
+    {
+      "id": "11",
+      "placa_vehiculo": "EFG-1234",
+      "fecha_hora_ingreso": "2025-11-22T08:30:00",
+      "fecha_hora_salida": "2025-11-22T11:30:00",
+      "tiempo_permanencia": "3h",
+      "id_operador_ingreso": 2,
+      "id_operador_salida": 1,
+      "monto": 3,
+      "tarifa": 1,
+      "metodo_pago": "Tarjeta de crédito"
+    },
+    {
+      "id": "12",
+      "placa_vehiculo": "HIJ-5678",
+      "fecha_hora_ingreso": "2025-11-25T10:00:00",
+      "fecha_hora_salida": "2025-11-25T18:00:00",
+      "tiempo_permanencia": "8h",
+      "id_operador_ingreso": 1,
+      "id_operador_salida": 1,
+      "monto": 8,
+      "tarifa": 1,
+      "metodo_pago": "Efectivo"
+    },
+    {
+      "id": "13",
+      "placa_vehiculo": "KLM-9012",
+      "fecha_hora_ingreso": "2025-11-26T09:00:00",
+      "fecha_hora_salida": "2025-11-26T14:00:00",
+      "tiempo_permanencia": "5h",
+      "id_operador_ingreso": 2,
+      "id_operador_salida": 2,
+      "monto": 5,
+      "tarifa": 1,
+      "metodo_pago": "Tarjeta de débito"
+    },
+    {
+      "id": "14",
+      "placa_vehiculo": "NOP-3456",
+      "fecha_hora_ingreso": "2025-11-27T07:00:00",
+      "fecha_hora_salida": "2025-11-27T19:00:00",
+      "tiempo_permanencia": "12h",
+      "id_operador_ingreso": 1,
+      "id_operador_salida": 2,
+      "monto": 12,
+      "tarifa": 1,
+      "metodo_pago": "Efectivo"
+    },
+    {
+      "id": "15",
+      "placa_vehiculo": "QRS-7890",
+      "fecha_hora_ingreso": "2025-11-28T08:00:00",
+      "fecha_hora_salida": "2025-11-28T12:00:00",
+      "tiempo_permanencia": "4h",
+      "id_operador_ingreso": 2,
+      "id_operador_salida": 1,
+      "monto": 4,
+      "tarifa": 1,
+      "metodo_pago": "Tarjeta de crédito"
+    },
+    {
+      "id": "16",
+      "placa_vehiculo": "TUV-1234",
+      "fecha_hora_ingreso": "2025-11-29T09:30:00",
+      "fecha_hora_salida": "2025-11-29T17:30:00",
+      "tiempo_permanencia": "8h",
+      "id_operador_ingreso": 1,
+      "id_operador_salida": 1,
+      "monto": 8,
+      "tarifa": 1,
+      "metodo_pago": "Efectivo"
+    },
+    {
+      "id": "17",
+      "placa_vehiculo": "WXY-5678",
+      "fecha_hora_ingreso": "2025-11-30T06:00:00",
+      "fecha_hora_salida": "2025-11-30T14:00:00",
+      "tiempo_permanencia": "8h",
+      "id_operador_ingreso": 2,
+      "id_operador_salida": 2,
+      "monto": 8,
+      "tarifa": 1,
+      "metodo_pago": "Tarjeta de débito"
+    },
+    {
+      "id": "18",
+      "placa_vehiculo": "ZAB-9012",
+      "fecha_hora_ingreso": "2025-12-01T10:00:00",
+      "fecha_hora_salida": "2025-12-01T16:00:00",
+      "tiempo_permanencia": "6h",
+      "id_operador_ingreso": 1,
+      "id_operador_salida": 2,
+      "monto": 6,
+      "tarifa": 1,
+      "metodo_pago": "Efectivo"
+    },
+    {
+      "id": "19",
+      "placa_vehiculo": "CDE-3456",
+      "fecha_hora_ingreso": "2025-12-01T08:00:00",
+      "fecha_hora_salida": "2025-12-01T20:00:00",
+      "tiempo_permanencia": "12h",
+      "id_operador_ingreso": 2,
+      "id_operador_salida": 1,
+      "monto": 12,
+      "tarifa": 1,
+      "metodo_pago": "Tarjeta de crédito"
+    },
+    {
+      "id": "20",
+      "placa_vehiculo": "FGH-7890",
+      "fecha_hora_ingreso": "2025-12-02T07:30:00",
+      "fecha_hora_salida": "2025-12-02T15:30:00",
+      "tiempo_permanencia": "8h",
+      "id_operador_ingreso": 1,
+      "id_operador_salida": 1,
+      "monto": 8,
+      "tarifa": 1,
+      "metodo_pago": "Efectivo"
+    },
+    {
+      "id": "21",
       "placa_vehiculo": "ABC-1234",
-      "fecha_hora_ingreso": "2025-11-29T20:55:30.885",
+      "fecha_hora_ingreso": "2025-12-02T09:00:00",
+      "fecha_hora_salida": "2025-12-02T13:00:00",
+      "tiempo_permanencia": "4h",
+      "id_operador_ingreso": 2,
+      "id_operador_salida": 2,
+      "monto": 4,
+      "tarifa": 1,
+      "metodo_pago": "Tarjeta de débito"
+    },
+    {
+      "id": 22,
+      "placa_vehiculo": "IJK-1234",
+      "fecha_hora_ingreso": "2025-12-02T14:00:00",
       "fecha_hora_salida": null,
       "tiempo_permanencia": null,
       "id_operador_ingreso": 1,
+      "id_operador_salida": null,
+      "monto": null,
+      "tarifa": 1,
+      "metodo_pago": null
+    },
+    {
+      "id": 23,
+      "placa_vehiculo": "LMN-5678",
+      "fecha_hora_ingreso": "2025-12-02T14:30:00",
+      "fecha_hora_salida": null,
+      "tiempo_permanencia": null,
+      "id_operador_ingreso": 2,
       "id_operador_salida": null,
       "monto": null,
       "tarifa": 1,
@@ -92,6 +320,20 @@
   ],
   "tarifas": [
     {
+      "id": "3",
+      "tarifa_por_hora": 0.55,
+      "status": false,
+      "created_at": "2025-10-30T10:00:00Z",
+      "id_usuario_creacion": 1
+    },
+    {
+      "id": "2",
+      "tarifa_por_hora": 0.6,
+      "status": false,
+      "created_at": "2025-10-22T10:00:00Z",
+      "id_usuario_creacion": 1
+    },
+    {
       "id": "1",
       "tarifa_por_hora": 0.5,
       "status": true,
@@ -99,14 +341,183 @@
       "id_usuario_creacion": 1
     }
   ],
-  "facturas": [],
+  "facturas": [
+    {
+      "id": "1",
+      "id_ticket": 1,
+      "monto_total": 4.5,
+      "fecha_emision": "2025-11-01T12:30:00",
+      "metodo_pago": "Efectivo",
+      "id_usuario_emision": 1
+    },
+    {
+      "id": "2",
+      "id_ticket": 2,
+      "monto_total": 5.5,
+      "fecha_emision": "2025-11-02T14:45:00",
+      "metodo_pago": "Tarjeta de débito",
+      "id_usuario_emision": 2
+    },
+    {
+      "id": "3",
+      "id_ticket": 3,
+      "monto_total": 10.5,
+      "fecha_emision": "2025-11-03T18:00:00",
+      "metodo_pago": "Tarjeta de crédito",
+      "id_usuario_emision": 1
+    },
+    {
+      "id": "4",
+      "id_ticket": 4,
+      "monto_total": 3,
+      "fecha_emision": "2025-11-05T13:00:00",
+      "metodo_pago": "Efectivo",
+      "id_usuario_emision": 1
+    },
+    {
+      "id": "5",
+      "id_ticket": 5,
+      "monto_total": 8.75,
+      "fecha_emision": "2025-11-07T17:30:00",
+      "metodo_pago": "Tarjeta de débito",
+      "id_usuario_emision": 2
+    },
+    {
+      "id": "6",
+      "id_ticket": 6,
+      "monto_total": 14,
+      "fecha_emision": "2025-11-10T20:00:00",
+      "metodo_pago": "Efectivo",
+      "id_usuario_emision": 2
+    },
+    {
+      "id": "7",
+      "id_ticket": 7,
+      "monto_total": 4.5,
+      "fecha_emision": "2025-11-12T15:30:00",
+      "metodo_pago": "Tarjeta de crédito",
+      "id_usuario_emision": 1
+    },
+    {
+      "id": "8",
+      "id_ticket": 8,
+      "monto_total": 3,
+      "fecha_emision": "2025-11-15T12:00:00",
+      "metodo_pago": "Efectivo",
+      "id_usuario_emision": 1
+    },
+    {
+      "id": "9",
+      "id_ticket": 9,
+      "monto_total": 5,
+      "fecha_emision": "2025-11-18T19:00:00",
+      "metodo_pago": "Tarjeta de débito",
+      "id_usuario_emision": 2
+    },
+    {
+      "id": "10",
+      "id_ticket": 10,
+      "monto_total": 9,
+      "fecha_emision": "2025-11-20T16:00:00",
+      "metodo_pago": "Efectivo",
+      "id_usuario_emision": 2
+    },
+    {
+      "id": "11",
+      "id_ticket": 11,
+      "monto_total": 3,
+      "fecha_emision": "2025-11-22T11:30:00",
+      "metodo_pago": "Tarjeta de crédito",
+      "id_usuario_emision": 1
+    },
+    {
+      "id": "12",
+      "id_ticket": 12,
+      "monto_total": 8,
+      "fecha_emision": "2025-11-25T18:00:00",
+      "metodo_pago": "Efectivo",
+      "id_usuario_emision": 1
+    },
+    {
+      "id": "13",
+      "id_ticket": 13,
+      "monto_total": 5,
+      "fecha_emision": "2025-11-26T14:00:00",
+      "metodo_pago": "Tarjeta de débito",
+      "id_usuario_emision": 2
+    },
+    {
+      "id": "14",
+      "id_ticket": 14,
+      "monto_total": 12,
+      "fecha_emision": "2025-11-27T19:00:00",
+      "metodo_pago": "Efectivo",
+      "id_usuario_emision": 2
+    },
+    {
+      "id": "15",
+      "id_ticket": 15,
+      "monto_total": 4,
+      "fecha_emision": "2025-11-28T12:00:00",
+      "metodo_pago": "Tarjeta de crédito",
+      "id_usuario_emision": 1
+    },
+    {
+      "id": "16",
+      "id_ticket": 16,
+      "monto_total": 8,
+      "fecha_emision": "2025-11-29T17:30:00",
+      "metodo_pago": "Efectivo",
+      "id_usuario_emision": 1
+    },
+    {
+      "id": "17",
+      "id_ticket": 17,
+      "monto_total": 8,
+      "fecha_emision": "2025-11-30T14:00:00",
+      "metodo_pago": "Tarjeta de débito",
+      "id_usuario_emision": 2
+    },
+    {
+      "id": "18",
+      "id_ticket": 18,
+      "monto_total": 6,
+      "fecha_emision": "2025-12-01T16:00:00",
+      "metodo_pago": "Efectivo",
+      "id_usuario_emision": 2
+    },
+    {
+      "id": "19",
+      "id_ticket": 19,
+      "monto_total": 12,
+      "fecha_emision": "2025-12-01T20:00:00",
+      "metodo_pago": "Tarjeta de crédito",
+      "id_usuario_emision": 1
+    },
+    {
+      "id": "20",
+      "id_ticket": 20,
+      "monto_total": 8,
+      "fecha_emision": "2025-12-02T15:30:00",
+      "metodo_pago": "Efectivo",
+      "id_usuario_emision": 1
+    },
+    {
+      "id": "21",
+      "id_ticket": 21,
+      "monto_total": 4,
+      "fecha_emision": "2025-12-02T13:00:00",
+      "metodo_pago": "Tarjeta de débito",
+      "id_usuario_emision": 2
+    }
+  ],
   "parqueaderos": [
     {
       "id": "1",
       "nombre": "Parqueadero Central",
       "direccion": "Calle 123 #45-67",
       "capacidad_total": 100,
-      "espacios_ocupados": 2,
+      "espacios_ocupados": 3,
       "created_at": "2025-11-01T10:00:00Z",
       "status": true
     }

@@ -12,6 +12,31 @@ export const useUser = () => {
 
   const API_URL = `${env.API_URL}/users`;
 
+  //? >>> Obtener todos los usuarios
+  const getUsers = useCallback(async (): Promise<UserInterface[]> => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await fetch(API_URL);
+
+      if (!response.ok) {
+        throw new Error("Error al obtener los usuarios");
+      }
+
+      const data: UserInterface[] = await response.json();
+      return data;
+    } catch (err) {
+      const errorMessage =
+        err instanceof Error ? err.message : "Error desconocido";
+      setError(errorMessage);
+      console.error(err);
+      return [];
+    } finally {
+      setLoading(false);
+    }
+  }, [API_URL]);
+  //? <<<
+
   //? >>> Obtener usuario por email
   const getUserByEmail = useCallback(
     async (email: string): Promise<UserInterface | null> => {
@@ -281,6 +306,7 @@ export const useUser = () => {
   return {
     loading,
     error,
+    getUsers,
     getUserByEmail,
     createUser,
     login,
