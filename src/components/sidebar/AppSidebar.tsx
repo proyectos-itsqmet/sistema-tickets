@@ -2,12 +2,13 @@ import {
   CircleParking,
   UsersRound,
   LayoutDashboard,
-  ChevronDown,
-  UserPlus,
+  // ChevronDown,
+  // UserPlus,
   CircleDollarSign,
   Car,
   LogOut,
   ChevronsUpDown,
+  ChartLine,
 } from "lucide-react";
 
 import {
@@ -20,17 +21,17 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubButton,
-  SidebarMenuSubItem,
+  // SidebarMenuSub,
+  // SidebarMenuSubButton,
+  // SidebarMenuSubItem,
   SidebarFooter,
   useSidebar,
 } from "@/components/ui/sidebar";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
+// import {
+//   Collapsible,
+//   CollapsibleContent,
+//   CollapsibleTrigger,
+// } from "@/components/ui/collapsible";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -56,20 +57,25 @@ const items = [
   },
   {
     title: "Usuarios",
-    url: "#",
+    url: "/users",
     icon: UsersRound,
-    subitems: [
-      {
-        title: "Registro",
-        url: "/register",
-        icon: UserPlus,
-      },
-    ],
+    // subitems: [
+    //   {
+    //     title: "Registro",
+    //     url: "/register",
+    //     icon: UserPlus,
+    //   },
+    // ],
   },
   {
     title: "Tarifas",
     url: "/rates",
     icon: CircleDollarSign,
+  },
+  {
+    title: "Reportes",
+    url: "/reports",
+    icon: ChartLine,
   },
 ];
 
@@ -119,41 +125,8 @@ export function AppSidebar() {
           <SidebarGroupLabel>Parking</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {items.map((item) =>
-                item.subitems ? (
-                  <Collapsible
-                    key={item.title}
-                    defaultOpen
-                    className="group/collapsible"
-                  >
-                    <SidebarMenuItem>
-                      <CollapsibleTrigger asChild>
-                        <SidebarMenuButton>
-                          <item.icon />
-                          <span>{item.title}</span>
-                          <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
-                        </SidebarMenuButton>
-                      </CollapsibleTrigger>
-                      <CollapsibleContent>
-                        <SidebarMenuSub>
-                          {item.subitems.map((subitem) => (
-                            <SidebarMenuSubItem key={subitem.title}>
-                              <SidebarMenuSubButton asChild>
-                                <Link
-                                  to={subitem.url}
-                                  onClick={handleLinkClick}
-                                >
-                                  <subitem.icon />
-                                  <span>{subitem.title}</span>
-                                </Link>
-                              </SidebarMenuSubButton>
-                            </SidebarMenuSubItem>
-                          ))}
-                        </SidebarMenuSub>
-                      </CollapsibleContent>
-                    </SidebarMenuItem>
-                  </Collapsible>
-                ) : (
+              {items.map(
+                (item) => (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton asChild>
                       <Link to={item.url} onClick={handleLinkClick}>
@@ -163,6 +136,49 @@ export function AppSidebar() {
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 )
+                // item.subitems ? (
+                //   <Collapsible
+                //     key={item.title}
+                //     defaultOpen
+                //     className="group/collapsible"
+                //   >
+                //     <SidebarMenuItem>
+                //       <CollapsibleTrigger asChild>
+                //         <SidebarMenuButton>
+                //           <item.icon />
+                //           <span>{item.title}</span>
+                //           <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+                //         </SidebarMenuButton>
+                //       </CollapsibleTrigger>
+                //       <CollapsibleContent>
+                //         <SidebarMenuSub>
+                //           {item.subitems.map((subitem) => (
+                //             <SidebarMenuSubItem key={subitem.title}>
+                //               <SidebarMenuSubButton asChild>
+                //                 <Link
+                //                   to={subitem.url}
+                //                   onClick={handleLinkClick}
+                //                 >
+                //                   <subitem.icon />
+                //                   <span>{subitem.title}</span>
+                //                 </Link>
+                //               </SidebarMenuSubButton>
+                //             </SidebarMenuSubItem>
+                //           ))}
+                //         </SidebarMenuSub>
+                //       </CollapsibleContent>
+                //     </SidebarMenuItem>
+                //   </Collapsible>
+                // ) : (
+                //   <SidebarMenuItem key={item.title}>
+                //     <SidebarMenuButton asChild>
+                //       <Link to={item.url} onClick={handleLinkClick}>
+                //         <item.icon />
+                //         <span>{item.title}</span>
+                //       </Link>
+                //     </SidebarMenuButton>
+                //   </SidebarMenuItem>
+                // )
               )}
             </SidebarMenu>
           </SidebarGroupContent>

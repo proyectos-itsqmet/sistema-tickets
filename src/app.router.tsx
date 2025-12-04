@@ -2,9 +2,10 @@ import { createBrowserRouter, Navigate } from "react-router";
 import { LoginPage } from "./auth/pages/login/LoginPage";
 import { DashboardPage } from "./parking/pages/dashboard/DashboardPage";
 import { RatesPage } from "./parking/pages/rates/RatesPage";
-import { RegisterPage } from "./parking/pages/users/RegisterPage";
 import { HomePage } from "./parking/pages/home/HomePage";
 import { lazy } from "react";
+import { UsersPage } from "./parking/pages/users/UsersPage";
+import { ReportsPage } from "./parking/pages/reports/ReportsPage";
 // import ParkingLayout from "./parking/layouts/ParkingLayout";
 
 //? >>> Se carga de forma perezosa, solo cuando el usuario entra a una ruta de /auth
@@ -46,12 +47,16 @@ export const appRouter = createBrowserRouter([
         element: <DashboardPage />,
       },
       {
-        path: "register",
-        element: <RegisterPage />,
+        path: "users",
+        element: <UsersPage />,
       },
       {
         path: "rates",
         element: <RatesPage />,
+      },
+      {
+        path: "reports",
+        element: <ReportsPage />,
       },
     ],
   },

@@ -16,7 +16,11 @@ import { useRoles } from "@/hooks/useRoles";
 import type { RolInterface } from "@/interfaces/rol.interface";
 import type { UserInterface } from "@/interfaces/user.interface";
 
-export const RegisterForm = () => {
+interface RegisterFormProps {
+  onSuccess?: () => void;
+}
+
+export const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
   const [rol, setRol] = useState<RolInterface | null>(null);
   const [roles, setRoles] = useState<RolInterface[]>([]);
   const [formData, setFormData] = useState({
@@ -89,6 +93,11 @@ export const RegisterForm = () => {
           password: "",
         });
         setRol(null);
+
+        // Llamar callback de éxito si existe
+        if (onSuccess) {
+          onSuccess();
+        }
       } else {
         setError(errorUser || "Error al registrar el usuario");
       }
