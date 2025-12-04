@@ -34,7 +34,7 @@ export const ReportsPage = () => {
     getOperatorActivity,
   } = useReports();
 
-  // Obtener fecha actual y hace 30 días
+  //! Obtener fecha actual y hace 30 días
   const today = new Date();
   const thirtyDaysAgo = new Date(today);
   thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
@@ -48,13 +48,12 @@ export const ReportsPage = () => {
   );
   const [activeTab, setActiveTab] = useState("ingresos");
 
-  // Estados para datos
   const [incomeData, setIncomeData] = useState<IncomeReportData[]>([]);
   const [occupancyData, setOccupancyData] = useState<OccupancyReportData[]>([]);
   const [frequentData, setFrequentData] = useState<FrequentVehicleData[]>([]);
   const [operatorData, setOperatorData] = useState<OperatorActivityData[]>([]);
 
-  // Cargar datos según la pestaña activa
+  //! Cargar datos según la pestaña activa
   const loadReportData = useCallback(async () => {
     switch (activeTab) {
       case "ingresos": {
@@ -128,7 +127,7 @@ export const ReportsPage = () => {
     }
   };
 
-  // Calcular totales para las tarjetas resumen
+  //! Calcular totales para las tarjetas resumen
   const totalIngresos = incomeData.reduce(
     (sum, item) => sum + item.ingresos,
     0
@@ -156,11 +155,10 @@ export const ReportsPage = () => {
         </div>
       </div>
 
-      {/* Filtros */}
       <div className="flex flex-col lg:flex-row gap-4 px-2">
-        <Card className="flex-1">
+        <Card className="flex-1 ">
           <CardContent className="pt-4">
-            <div className="flex flex-col md:flex-row gap-4 items-end">
+            <div className="flex flex-wrap md:flex-row gap-4 items-end">
               <div className="flex flex-col gap-2 flex-1">
                 <Label htmlFor="fechaInicio">Fecha Inicio</Label>
                 <Input
