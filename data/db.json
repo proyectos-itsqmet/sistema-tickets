@@ -370,10 +370,10 @@
       "fecha_hora_salida": null,
       "tiempo_permanencia": null,
       "id_operador_ingreso": 1,
-      "id_operador_salida": null,
-      "monto": null,
+      "id_operador_salida": 1,
+      "monto": 30,
       "tarifa": 1,
-      "metodo_pago": null
+      "metodo_pago": "Tarjeta de débito"
     },
     {
       "id": "27",
