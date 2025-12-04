@@ -11,6 +11,14 @@ import {
 } from "@tanstack/react-table";
 
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 import {
   Table,
@@ -23,6 +31,7 @@ import {
 import { createColumns } from "./ParkingDatatableColumns";
 import { useMemo, useState } from "react";
 import type { TicketsInterface } from "@/interfaces/tickets.interface";
+import { Filter, Search } from "lucide-react";
 
 interface ParkingDatatableProps {
   data: TicketsInterface[];
@@ -33,6 +42,8 @@ interface ParkingDatatableProps {
   loading: boolean;
 }
 
+type EstadoFiltro = "todos" | "activos" | "finalizados";
+
 export function ParkingDatatable({
   data,
   onConfirmSalida,
@@ -42,6 +53,25 @@ export function ParkingDatatable({
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
+  const [estadoFiltro, setEstadoFiltro] = useState<EstadoFiltro>("todos");
+
+  //! Filtrar datos según el estado seleccionado
+  const filteredData = useMemo(() => {
+    switch (estadoFiltro) {
+      case "activos":
+        return data.filter((ticket) => ticket.fecha_hora_salida === null);
+      case "finalizados":
+        return data.filter((ticket) => ticket.fecha_hora_salida !== null);
+      default:
+        return data;
+    }
+  }, [data, estadoFiltro]);
+
+  const estadoLabels: Record<EstadoFiltro, string> = {
+    todos: "Todos",
+    activos: "Activos",
+    finalizados: "Finalizados",
+  };
 
   const columns = useMemo(
     () => createColumns(onConfirmSalida, loading),
@@ -49,7 +79,7 @@ export function ParkingDatatable({
   );
 
   const table = useReactTable({
-    data,
+    data: filteredData,
     columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
@@ -69,7 +99,46 @@ export function ParkingDatatable({
 
   return (
     <div className="w-full">
-      <div className="flex items-center"></div>
+      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 py-4">
+        <div className="relative w-full max-w-sm">
+          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+          <Input
+            placeholder="Buscar por placa..."
+            value={
+              (table.getColumn("placa_vehiculo")?.getFilterValue() as string) ??
+              ""
+            }
+            onChange={(event) =>
+              table
+                .getColumn("placa_vehiculo")
+                ?.setFilterValue(event.target.value)
+            }
+            className="pl-10"
+          />
+        </div>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" className="cursor-pointer gap-2">
+              <Filter className="h-4 w-4" />
+              {estadoLabels[estadoFiltro]}
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuRadioGroup
+              value={estadoFiltro}
+              onValueChange={(value) => setEstadoFiltro(value as EstadoFiltro)}
+            >
+              <DropdownMenuRadioItem value="todos">Todos</DropdownMenuRadioItem>
+              <DropdownMenuRadioItem value="activos">
+                Activos
+              </DropdownMenuRadioItem>
+              <DropdownMenuRadioItem value="finalizados">
+                Finalizados
+              </DropdownMenuRadioItem>
+            </DropdownMenuRadioGroup>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
       <div className="overflow-hidden rounded-md border">
         <Table>
           <TableHeader>

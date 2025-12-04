@@ -15,8 +15,23 @@ interface OccupancyChartProps {
 
 export const OccupancyChart = ({ data }: OccupancyChartProps) => {
   const formatDate = (dateStr: string) => {
-    const date = new Date(dateStr + "T00:00:00");
-    return date.toLocaleDateString("es-EC", { day: "2-digit", month: "short" });
+    // Zona horaria
+    const [, month, day] = dateStr.split("-");
+    const months = [
+      "ene",
+      "feb",
+      "mar",
+      "abr",
+      "may",
+      "jun",
+      "jul",
+      "ago",
+      "sep",
+      "oct",
+      "nov",
+      "dic",
+    ];
+    return `${day} ${months[parseInt(month) - 1]}`;
   };
 
   const formattedData = data.map((item) => ({

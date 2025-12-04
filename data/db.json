@@ -7,7 +7,7 @@
       "email": "pzambrano@correo.com",
       "password": "$2b$10$6ZsT4Zgih8oIsazUHB3gIeO/HHJks8acaUbDV3o3h0xrYFfjnAu6K",
       "role": 2,
-      "status": true,
+      "status": false,
       "created_at": "2025-11-01T10:00:00Z",
       "updated_at": null,
       "loginAttempts": 0
@@ -17,7 +17,7 @@
       "firstName": "Miguel",
       "lastName": "Morales",
       "email": "mmorales@correo.com",
-      "password": "$2b$10$6ZsT4Zgih8oIsazUHB3gIeO/HHJks8acaUbDV3o3h0xrYFfjnAu6K",
+      "password": "$2b$10$0rB0NLtmaKzQSGC/BOaoNuhXkXuGsNiUw2LHsUnK2EyhKmYQKj34C",
       "role": 1,
       "status": true,
       "created_at": "2025-11-26T03:27:31.522Z",
@@ -31,7 +31,18 @@
       "password": "$2b$10$trrLgrxdA7P52ZvnWXKPk.kqFFbOcnrNGpECR7vTegtp0cJiZXVaG",
       "role": "1",
       "status": false,
-      "created_at": "2025-12-04T00:14:03.443Z",
+      "created_at": "2025-12-03T00:14:03.443Z",
+      "loginAttempts": 0
+    },
+    {
+      "id": "4",
+      "firstName": "Yan",
+      "lastName": "Gutierrez",
+      "email": "ygutierrez@correo.com",
+      "password": "$2b$10$McCJLbqG6s0YOl0f5/tzzOF4Qd6PGGbiquWC66nSGB.ighFEJUmxC",
+      "role": "1",
+      "status": true,
+      "created_at": "2025-12-03T01:11:38.324Z",
       "loginAttempts": 0
     }
   ],
@@ -332,6 +343,150 @@
       "id": "24",
       "placa_vehiculo": "ABC-1234",
       "fecha_hora_ingreso": "2025-12-03T19:12:59.944",
+      "fecha_hora_salida": "2025-12-03T20:09:11.553",
+      "tiempo_permanencia": "56m",
+      "id_operador_ingreso": 1,
+      "id_operador_salida": 1,
+      "monto": 1,
+      "tarifa": 1,
+      "metodo_pago": "Tarjeta de crédito"
+    },
+    {
+      "id": "25",
+      "placa_vehiculo": "DFC-9877",
+      "fecha_hora_ingreso": "2025-12-03T20:08:48.255",
+      "fecha_hora_salida": "2025-12-03T22:50:36.656",
+      "tiempo_permanencia": "2h 41m",
+      "id_operador_ingreso": 1,
+      "id_operador_salida": 1,
+      "monto": 3,
+      "tarifa": 1,
+      "metodo_pago": "Efectivo"
+    },
+    {
+      "id": "26",
+      "placa_vehiculo": "QWE-1234",
+      "fecha_hora_ingreso": "2025-12-03T20:32:09.194",
+      "fecha_hora_salida": null,
+      "tiempo_permanencia": null,
+      "id_operador_ingreso": 1,
+      "id_operador_salida": null,
+      "monto": null,
+      "tarifa": 1,
+      "metodo_pago": null
+    },
+    {
+      "id": "27",
+      "placa_vehiculo": "SAD-2134",
+      "fecha_hora_ingreso": "2025-12-03T20:32:23.289",
+      "fecha_hora_salida": null,
+      "tiempo_permanencia": null,
+      "id_operador_ingreso": 1,
+      "id_operador_salida": null,
+      "monto": null,
+      "tarifa": 1,
+      "metodo_pago": null
+    },
+    {
+      "id": "28",
+      "placa_vehiculo": "ASD-1234",
+      "fecha_hora_ingreso": "2025-12-03T20:32:29.730",
+      "fecha_hora_salida": null,
+      "tiempo_permanencia": null,
+      "id_operador_ingreso": 1,
+      "id_operador_salida": null,
+      "monto": null,
+      "tarifa": 1,
+      "metodo_pago": null
+    },
+    {
+      "id": "29",
+      "placa_vehiculo": "SAD-6786",
+      "fecha_hora_ingreso": "2025-12-03T20:32:55.859",
+      "fecha_hora_salida": null,
+      "tiempo_permanencia": null,
+      "id_operador_ingreso": 1,
+      "id_operador_salida": null,
+      "monto": null,
+      "tarifa": 1,
+      "metodo_pago": null
+    },
+    {
+      "id": "30",
+      "placa_vehiculo": "SAD-7863",
+      "fecha_hora_ingreso": "2025-12-03T20:33:02.005",
+      "fecha_hora_salida": null,
+      "tiempo_permanencia": null,
+      "id_operador_ingreso": 1,
+      "id_operador_salida": null,
+      "monto": null,
+      "tarifa": 1,
+      "metodo_pago": null
+    },
+    {
+      "id": "31",
+      "placa_vehiculo": "NBM-7887",
+      "fecha_hora_ingreso": "2025-12-03T20:34:00.341",
+      "fecha_hora_salida": null,
+      "tiempo_permanencia": null,
+      "id_operador_ingreso": 1,
+      "id_operador_salida": null,
+      "monto": null,
+      "tarifa": 1,
+      "metodo_pago": null
+    },
+    {
+      "id": "32",
+      "placa_vehiculo": "ASD-1238",
+      "fecha_hora_ingreso": "2025-12-03T20:40:28.736",
+      "fecha_hora_salida": null,
+      "tiempo_permanencia": null,
+      "id_operador_ingreso": 1,
+      "id_operador_salida": null,
+      "monto": null,
+      "tarifa": 1,
+      "metodo_pago": null
+    },
+    {
+      "id": "33",
+      "placa_vehiculo": "ASD-5677",
+      "fecha_hora_ingreso": "2025-12-03T22:50:33.684",
+      "fecha_hora_salida": null,
+      "tiempo_permanencia": null,
+      "id_operador_ingreso": 1,
+      "id_operador_salida": null,
+      "monto": null,
+      "tarifa": 1,
+      "metodo_pago": null
+    },
+    {
+      "id": 34,
+      "placa_vehiculo": "ASD-9878",
+      "fecha_hora_ingreso": "2025-12-03T23:09:37.292",
+      "fecha_hora_salida": null,
+      "tiempo_permanencia": null,
+      "id_operador_ingreso": 1,
+      "id_operador_salida": null,
+      "monto": null,
+      "tarifa": 1,
+      "metodo_pago": null
+    },
+    {
+      "id": 35,
+      "placa_vehiculo": "VCB-5974",
+      "fecha_hora_ingreso": "2025-12-03T23:16:54.034",
+      "fecha_hora_salida": null,
+      "tiempo_permanencia": null,
+      "id_operador_ingreso": 1,
+      "id_operador_salida": null,
+      "monto": null,
+      "tarifa": 1,
+      "metodo_pago": null
+    },
+    {
+      "id": 36,
+      "placa_vehiculo": "LKJ-5463",
+      "fecha_hora_ingreso": "2025-12-03T23:20:35.471",
       "fecha_hora_salida": null,
       "tiempo_permanencia": null,
       "id_operador_ingreso": 1,
@@ -364,10 +519,17 @@
       "id_usuario_creacion": 1
     },
     {
-      "id": 4,
+      "id": "4",
       "tarifa_por_hora": 0.65,
-      "status": true,
+      "status": false,
       "created_at": "2025-12-03T19:14:47.133",
+      "id_usuario_creacion": "1"
+    },
+    {
+      "id": "5",
+      "tarifa_por_hora": 0.7,
+      "status": true,
+      "created_at": "2025-12-03T20:13:05.372",
       "id_usuario_creacion": "1"
     }
   ],
@@ -555,6 +717,22 @@
       "fecha_emision": "2025-12-03T19:12:52.972",
       "metodo_pago": "Tarjeta de débito",
       "id_usuario_emision": 1
+    },
+    {
+      "id": "24",
+      "id_ticket": 24,
+      "monto_total": 1,
+      "fecha_emision": "2025-12-03T20:09:11.598",
+      "metodo_pago": "Tarjeta de crédito",
+      "id_usuario_emision": 1
+    },
+    {
+      "id": "25",
+      "id_ticket": 25,
+      "monto_total": 3,
+      "fecha_emision": "2025-12-03T22:50:36.707",
+      "metodo_pago": "Efectivo",
+      "id_usuario_emision": 1
     }
   ],
   "parqueaderos": [
@@ -563,7 +741,7 @@
       "nombre": "Parqueadero Central",
       "direccion": "Calle 123 #45-67",
       "capacidad_total": 100,
-      "espacios_ocupados": 2,
+      "espacios_ocupados": 12,
       "created_at": "2025-11-01T10:00:00Z",
       "status": true
     }
